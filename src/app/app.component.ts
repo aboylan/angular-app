@@ -13,7 +13,9 @@ export class AppComponent {
   title: string = 'Hola mundo Angular 18';
   enabled: boolean = false;
 
-  setEnabled(): void{
+  courses: string[] = ['Angular', 'React', 'Spriong Boot'];
+
+  setEnabled(): void {
     this.enabled = this.enabled ? false : true;
     console.log('hemos hecho click en setEnabled');
   }
