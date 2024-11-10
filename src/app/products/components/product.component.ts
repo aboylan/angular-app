@@ -22,12 +22,12 @@ export class ProductComponent implements OnInit {
     this.service.findAll().subscribe(products => this.products = products);
   }
 
-  addProduct(product: Product) {
+  addProduct(product: Product): void {
 
     if (product.id > 0) {
       this.products = this.products.map(prod => {
-        if(prod.id == product.id) {
-          return {... product };
+        if (prod.id == product.id) {
+          return { ...product };
         }
         return prod;
       });
@@ -36,9 +36,15 @@ export class ProductComponent implements OnInit {
       // this.products.push(product);
       this.products = [... this.products, { ...product, id: new Date().getTime() }];
     }
+    this.productSelected = new Product();
   }
 
-  onUpdateProduct(productRow: Product) {
+  onRemoveProduct(id: number): void {
+    this.products = this.products.filter(product => product.id != id);
+  }
+
+  onUpdateProduct(productRow: Product): void {
     this.productSelected = productRow;
   }
+
 }
