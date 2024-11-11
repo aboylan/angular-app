@@ -19,10 +19,19 @@ export class FormComponent {
   };
 
   @Output() newProductEvent = new EventEmitter();
-  
+
   onSubmit(): void {
     this.newProductEvent.emit(this.product);
     console.log(this.product);
+  }
+
+  clean(): void {
+    this.product = {
+      id: 0,
+      name: '',
+      description: '',
+      price: 0
+    };
   }
 
 }

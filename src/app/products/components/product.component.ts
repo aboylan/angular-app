@@ -44,7 +44,7 @@ export class ProductComponent implements OnInit {
   }
 
   onUpdateProduct(productRow: Product): void {
-    this.productSelected = productRow;
+    this.productSelected = { ...productRow };
   }
 
 }
