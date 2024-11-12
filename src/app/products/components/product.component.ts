@@ -25,16 +25,19 @@ export class ProductComponent implements OnInit {
   addProduct(product: Product): void {
 
     if (product.id > 0) {
-      this.products = this.products.map(prod => {
-        if (prod.id == product.id) {
-          return { ...product };
-        }
-        return prod;
+      this.service.update(product).subscribe(productUpdated => {
+        this.products = this.products.map(prod => {
+          if (prod.id == product.id) {
+            return { ...productUpdated };
+          }
+          return prod;
+        });
       });
     } else {
-      // product.id = new Date().getTime();
-      // this.products.push(product);
-      this.products = [... this.products, { ...product, id: new Date().getTime() }];
+      this.service.create(product).subscribe(productNew => {
+        // this.products.push({ ...productNew });
+        this.products = [... this.products, { ...productNew }];
+      });
     }
     this.productSelected = new Product();
   }
